@@ -36,4 +36,4 @@ Example for version 2019:
 <OutDir Condition="'$(Configuration)|$(Platform)'=='2019|x64'">C:\Program Files\Autodesk\3ds Max 2019\Plugins\</OutDir>
 <OutDir Condition="'$(Configuration)|$(Platform)'!='2019|x64'">$(SolutionDir)..\_BinDump\$(SolutionName)_$(Platform)_$(Configuration)\</OutDir>
 ```
-
+### [Latest Release](https://github.com/PredatorCZ/Xplorer/releases/)
