@@ -12,8 +12,6 @@ Current version utilities:
 - ColorVar (Animated Color) : is texmap class for constant color output
 
 # Building
-Requires [PreCore](https://github.com/PredatorCZ/PreCore) to be placed alongside this repo folder clone.
-
 Building will create _ObjDump and _BinDump folders alongside this repo folder clone.
 
 ## Editing .vcxproj
