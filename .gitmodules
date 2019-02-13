@@ -1,0 +1,3 @@
+[submodule "PreCore"]
+	path = PreCore
+	url = git://github.com/PredatorCZ/PreCore.git
