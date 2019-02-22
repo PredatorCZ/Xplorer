@@ -74,11 +74,18 @@
   <ItemGroup>
     <ResourceCompile Include="src\Xplorer.rc" />
   </ItemGroup>
+  
+  <PropertyGroup Label="MAXConfigurations">
+    <MaxSDK>C:\Program Files\Autodesk\3ds Max $(Configuration) SDK\maxsdk</MaxSDK>
+	<MaxDebugConfiguration>2017|x64</MaxDebugConfiguration>	
+  </PropertyGroup>  
+  
   <PropertyGroup Label="Globals">
     <ProjectGuid>{A4EE373B-34C7-4FB6-83D1-AB5EB29F525E}</ProjectGuid>
     <RootNamespace>Xplorer</RootNamespace>
     <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <MaxSDK>C:\Program Files\Autodesk\3ds Max $(Configuration) SDK\maxsdk</MaxSDK>
+    <PostBuildEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='$(MaxDebugConfiguration)'">true</PostBuildEventUseInBuild>
+	<PostBuildEventUseInBuild Condition="'$(Configuration)|$(Platform)'!='$(MaxDebugConfiguration)'">false</PostBuildEventUseInBuild>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <PropertyGroup Label="Globals" Condition="('$(Configuration)'=='2010' Or '$(Configuration)'=='2011' Or '$(Configuration)'=='2012' Or '$(Configuration)'=='2013') And '$(Platform)' == 'x64'">
@@ -97,9 +104,8 @@
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet Condition="('$(Configuration)'=='2010' Or '$(Configuration)'=='2011' Or '$(Configuration)'=='2012')">NotSet</CharacterSet>
     <CharacterSet Condition="!('$(Configuration)'=='2010' Or '$(Configuration)'=='2011' Or '$(Configuration)'=='2012')">Unicode</CharacterSet>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='2017|x64'">C:\Program Files\Autodesk\3ds Max 2017\Plugins\</OutDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'!='2017|x64'">$(SolutionDir)..\_BinDump\$(SolutionName)_$(Platform)_$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)..\_ObjDump\$(ProjectName)_$(Platform)_$(Configuration)\</IntDir>
+    <OutDir>Bin\$(Platform)_$(Configuration)\</OutDir>
+    <IntDir>ObjDump\$(Platform)_$(Configuration)\</IntDir>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -110,7 +116,6 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
   <ItemDefinitionGroup>
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -133,6 +138,9 @@
       <ImportLibrary>$(IntDir)$(TargetName).lib</ImportLibrary>
       <OutputFile>$(OutDir)$(TargetName).dlu</OutputFile>
     </Link>
+	<PostBuildEvent>
+      <Command>COPY /Y /V "$(OutDir)$(TargetName).dlu" /B "C:\Program Files\Autodesk\3ds Max $(Configuration)\Plugins\" /B</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

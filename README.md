@@ -11,27 +11,13 @@ Current version utilities:
 - ColorMask (Decompose) : is texmap class that will decompose one channel from RGBA input
 - ColorVar (Animated Color) : is texmap class for constant color output
 
-# Building
-Building will create _ObjDump and _BinDump folders alongside this repo folder clone.
-
 ## Editing .vcxproj
-At **PropertyGroup Label=Globals** group, locate **MaxSDK** field, change path where is your MAX SDK installation.
-If your MAX SDK installation is somewhere else than default path stated in this field, you can edit path here.
+All essential configurations are within **PropertyGroup Label="MAXConfigurations"** field.
+- **MaxSDK**: changes path where is your MAX SDK installation.
+If your MAX SDK installation is somewhere else than default path stated in this field, you can edit it here.
+- **MaxDebugConfiguration**: changes 3ds max version and platform, so all necessary files are copied into plugin directory, this will enable post-build event.
 
-At **PropertyGroup Label=Configuration** group, locate both **OutDir** fields, there is conditional between 3ds max plugins path or _BinBump folders, I'm debugging plugins for 3ds max 2017, but you can change it to any version you're using.
+## Post-build event
+Change 3ds max installation path (Default is C:\Program Files\Autodesk\). Do not change anything else unless you know what you're doing!
 
-Example for version 2017 (default):
-
-```
-<OutDir Condition="'$(Configuration)|$(Platform)'=='2017|x64'">C:\Program Files\Autodesk\3ds Max 2017\Plugins\</OutDir>
-<OutDir Condition="'$(Configuration)|$(Platform)'!='2017|x64'">$(SolutionDir)..\_BinDump\$(SolutionName)_$(Platform)_$(Configuration)\</OutDir>
-```
-
-Example for version 2019:
-
-
-```
-<OutDir Condition="'$(Configuration)|$(Platform)'=='2019|x64'">C:\Program Files\Autodesk\3ds Max 2019\Plugins\</OutDir>
-<OutDir Condition="'$(Configuration)|$(Platform)'!='2019|x64'">$(SolutionDir)..\_BinDump\$(SolutionName)_$(Platform)_$(Configuration)\</OutDir>
-```
 ### [Latest Release](https://github.com/PredatorCZ/Xplorer/releases/)

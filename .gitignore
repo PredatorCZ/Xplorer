@@ -34,3 +34,5 @@
 *.aps
 *.filters
 *.user
+*Bin/*
+*ObjDump*
