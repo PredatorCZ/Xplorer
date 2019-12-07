@@ -30,6 +30,8 @@
 #include <bmmlib.h>
 #include <fltlib.h>
 
+#include "../project.h"
+
 
 extern TCHAR *GetString(int id);
 

@@ -34,5 +34,9 @@
 *.aps
 *.filters
 *.user
-*Bin/*
-*ObjDump*
+[Bb]in/*
+build/*
+
+project.h
+*.7z
+*.bat
